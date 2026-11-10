@@ -35,6 +35,7 @@
                     <td>Rp. {{ number_format($pet->harga, 0, ',', '.') }}</td>
                     <td>{{ $pet->status }}</td>
                     <td>
+                        <a class="btn btn-warning btn-sm" href="{{ route('pet.edit', $pet) }}" role="button">Edit</a>
                     </td>
                 </tr>
             @endforeach

@@ -104,6 +104,8 @@ class PetController extends Controller
      */
     public function destroy(Pet $pet)
     {
-        //
+        $pet->delete();
+
+        return to_route('pet.index')->withSuccess('Data Berhasil Dihapus');
     }
 }

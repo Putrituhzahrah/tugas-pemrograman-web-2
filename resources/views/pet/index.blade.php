@@ -36,6 +36,14 @@
                     <td>{{ $pet->status }}</td>
                     <td>
                         <a class="btn btn-warning btn-sm" href="{{ route('pet.edit', $pet) }}" role="button">Edit</a>
+
+                        <form method="POST" action="{{ route('pet.destroy', $pet) }}" class="d-inline">
+                            @csrf
+                            @method('delete')
+
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                onclick="return confirm('Are you sure?')">Delete</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

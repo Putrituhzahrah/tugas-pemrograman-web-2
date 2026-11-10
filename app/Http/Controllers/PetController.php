@@ -13,7 +13,7 @@ class PetController extends Controller
     public function index()
     {
         return view('pet.index', [
-            'title' => 'Pet',
+            'title' => 'Pets Shop',
             'pets' => Pet::latest()->get(),
         ]);
     }
@@ -23,7 +23,9 @@ class PetController extends Controller
      */
     public function create()
     {
-        //
+        return view('pet.create', [
+            'title' => 'Create Pet',
+        ]);
     }
 
     /**
@@ -31,7 +33,29 @@ class PetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'spesies' => 'required',
+            'ras' => 'required',
+            'jenis_kelamin' => 'required',
+            'umur_bulan' => 'required|numeric',
+            'harga' => 'required|numeric',
+            'status' => 'required',
+        ],
+            [
+                'spesies.required' => 'Spesies wajib di input',
+                'ras.required' => 'Ras wajib di input',
+                'jenis_kelamin.required' => 'Jenis Kelamin wajib di pilih',
+                'umur_bulan.required' => 'Umur wajib di input',
+                'umur_bulan.numeric' => 'Umur wajib berupa angka',
+                'harga.required' => 'Harga wajib di input',
+                'harga.numeric' => 'Harga wajib berupa angka',
+                'status.required' => 'Status wajib di pilih',
+            ]
+        );
+
+        Pet::create($validated);
+
+        return to_route('pet.index')->withSuccess('Data Berhasil Ditambahkan');
     }
 
     /**

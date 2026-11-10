@@ -2,6 +2,14 @@
 
     <x-slot:title>{{ $title }}</x-slot>
 
+    @if (session('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <a class="btn btn-primary mb-3" href="{{ route('pet.create') }}" role="button">Tambah Data Baru</a>
+
     <table class="table table-bordered border-dark table-hover">
         <thead>
             <tr>
